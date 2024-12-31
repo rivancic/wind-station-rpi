@@ -37,13 +37,17 @@ def upload_to_wu():
     f"&windspeedmph={wind_speed_mph}&action=updateraw"
   )
 
-  # Send the data
-  response = requests.get(upload_url)
+  try:
+    # Send the data
+    response = requests.get(upload_url)
 
-  if response.status_code == 200:
-    print("Data uploaded successfully!")
-  else:
-    print(f"Failed to upload data. Status code: {response.status_code}")
+    if response.status_code == 200:
+      print("Data uploaded successfully!")
+    else:
+      print(f"Failed to upload data. Status code: {response.status_code}")
+  
+  except requests.exceptions.ConnectionError as e:
+    print("Can't connect and upload wind speed to WU:", e)
 
 
 #########################################################################################
