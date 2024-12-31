@@ -1,0 +1,14 @@
+[Unit]
+Description=Wind measuring service
+
+[Service]
+Type=idle
+User=andrej
+WorkingDirectory=/home/andrej/weather/
+Environment=STATION_ID={{STATION_ID}} STATION_KEY={{STATION_KEY}}
+ExecStart=/usr/bin/python3 /home/andrej/weather/weather.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
